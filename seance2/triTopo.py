@@ -1,37 +1,3 @@
-# def TopologycalSort(x: list):
-#     y = x
-#     l = []
-#     # n = 1
-#     l2 = []
-#     a = 0
-#     while (a < len(y)):
-#         i = 0
-#         l1 = []
-#         while (i < len(y)):
-#             es2 = any(i in sublist for sublist in l2)
-#             if es2:
-#                 i += 1
-#             else:
-#                 es1 = any(i in sublist for sublist in y)
-#                 if not es1:
-#                     l1.append(i)
-#                     i += 1
-#                 else:
-#                     i += 1
-
-#         if not l1:
-#             print("La liste est vide")
-#         else:
-#             l2.append(l1)
-#             l.append(l1)
-
-#         for d in l1:
-#             y[d] = []
-#         # n += 1
-#         a += 1
-#     return l
-
-
 def TopologycalSort(x):
     y = x
     l = dict()
@@ -43,7 +9,6 @@ def TopologycalSort(x):
         for i in vertices:
             if i != None:
                 check = True
-    print(check)
     if not check:
         print("La liste est vide")
     else:
@@ -52,7 +17,6 @@ def TopologycalSort(x):
             l1 = []
             while (i < len(y)):
                 es2 = any(i in sublist for sublist in l2)
-                # print(es2)
                 if es2:
                     i += 1
                 else:
@@ -62,11 +26,9 @@ def TopologycalSort(x):
                         i += 1
                     else:
                         i += 1
-            # print(l1)
             if not l1:
-                print("Test")
+                print("La liste est vide")
             else:
-                # print("je suis ici")
                 l2.append(l1)
                 l["Niveau " + str(n)] = l1
 

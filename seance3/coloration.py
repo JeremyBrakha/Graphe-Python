@@ -11,7 +11,7 @@ def voisins(graphe, i):
         voi.extend(graphe[i])
     return voi
 
-# renvoie les couleurs en fonctions des sommets
+# renvoie les couleurs en fonctions des sommet
 def get_color(G, node, sommetsColories):
     for i in range(len(G)):
         if node == i:
