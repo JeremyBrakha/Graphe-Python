@@ -13,7 +13,7 @@ graph3 = [[0, 1, 2, 6, 7, 9], [1, 8, 9], [1, 3, 5, 8, 9], [0, 2, 3, 4, 6, 9], [
 
 graph4 = [[], [0], [0, 1], [2], [3]]
 
-
+# rendre une matrice adjacente
 def adjacente(graph):
     matrix = np.zeros((len(graph), len(graph)), dtype=int)
     for i in range(len(graph)):
@@ -21,7 +21,7 @@ def adjacente(graph):
             matrix[i, graph[i][j]] = 1
     return matrix
 
-
+# algorithme de Roy-Warshall
 def algo_roy(graph):
     size = len(graph)
     for w in range(size):
@@ -32,29 +32,7 @@ def algo_roy(graph):
 
     return graph
 
-
-def dfs(G, s):
-    P, Q = {s: None}, [s]
-    while Q:
-        u = Q[-1]
-        R = [y for y in G[u] if y not in P]
-        if R:
-            v = random.choice(R)
-            P[v] = u
-            Q.append(v)
-        else:
-            Q.pop()
-    return P
-
-
-def dfs(visited, graph, node):  # function for dfs
-    if node not in visited:
-        print(node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
-
-
+# Permet de récupérer un graphe sous forme de dictionnaire. Sert pour l'algo dfs
 def dictGraphe(matriceAdjc):
     graphe = dict()
     for index, node in enumerate(matriceAdjc):
@@ -63,6 +41,16 @@ def dictGraphe(matriceAdjc):
             if adj == 1:
                 indexes.append(idx)
     return graphe
+
+# algo de parcours de graphe en profondeur pour un noeud donné
+def dfs(visited, graph, node):  # function for dfs
+    if node not in visited:
+        print(node)
+        visited.add(node)
+        for neighbour in graph[node]:
+            dfs(visited, graph, neighbour)
+
+
 
 
 new_src = adjacente(graph3)
