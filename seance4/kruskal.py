@@ -1,4 +1,3 @@
-import numpy as np
 from collections import OrderedDict
 
 
@@ -17,7 +16,7 @@ def kruskal(graphe):
     G = dict()
     k = 0
 
-    # Transformation de la matrice d'adjacence en en un dictionnaire, avec les aretes comme clef et les poids comme valeur
+    # Transformation de la matrice d'adjacence en un dictionnaire, avec les aretes comme clef et les poids comme valeur
     for i in range(n) :
         for j in range(n) :
             poids = graphe[i][j]
@@ -36,15 +35,12 @@ def kruskal(graphe):
                 chemin.append(w)
                 trouve = True
             i += 1
-
         k += 1
-
-
 
     return chemin
 
 
-G = [
+grapheTest = [
         [ 0 , 1 , 0, 5, 0, 0, 0 ] ,
         [ 1 , 0 , 8, 9, 1, 0, 0 ] ,
         [ 0 , 8 , 0, 0, 5, 0, 0 ] ,
@@ -54,4 +50,6 @@ G = [
         [ 0 , 0 , 0, 0, 9, 0, 0 ] 
     ]
     
-print(kruskal(G))
+print(kruskal(grapheTest))
+
+result =  [(0, 1), (4, 1), (3, 0), (2, 4), (5, 3), (4, 6)]
