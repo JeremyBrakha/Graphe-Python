@@ -1,5 +1,5 @@
-import random
 import numpy as np
+import random
 
 src = [[1, 2], [2], [3], [4], []]
 

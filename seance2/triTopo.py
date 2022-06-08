@@ -27,7 +27,7 @@ def TopologycalSort(x):
                     else:
                         i += 1
             if not l1:
-                print("La liste est vide")
+                print("l1 est vide")
             else:
                 l2.append(l1)
                 l["Niveau " + str(n)] = l1
@@ -41,9 +41,9 @@ def TopologycalSort(x):
 
 
 G = [[1, 2], [2], [3], [4], []]
-E = [[], [], [], [], [], []]
 
 F = [[2, 3], [2], [3], [4], [5], []]
+E = [[], [], [], [], [], []]
 
 # gr = [[1], [2, 3], [5], [], [3], []]
 
