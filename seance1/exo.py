@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 src = [[1, 2], [2], [3], [4], []]
 
@@ -31,7 +32,7 @@ def algo_roy(graph):
 
     return graph
 
-# Permet de récupérer un graphe sous forme de dictionnaire. Sert pour l'algo dfs
+# Permet de recuperer un graphe sous forme de dictionnaire. Sert pour l'algo dfs
 def dictGraphe(matriceAdjc):
     graphe = dict()
     for index, node in enumerate(matriceAdjc):
@@ -64,3 +65,85 @@ print(myDictGraphe)
 print()
 visite = set()
 print(dfs(visite, myDictGraphe, 3))
+
+# fonction qui donne la liste des predecesseurs d'un sommet passe en parametre
+def predecesseurs(graphe, sommet) :
+    pred = []
+    for i in range(len(graphe)) :
+        if sommet in graphe[i] :
+            pred.append(i)
+
+    return pred
+
+
+
+def composantes_fconnexes(graphe):
+    n = len(graphe)
+    E = range(n)
+    flags = []
+    for i in range(n) :
+        flags.append([])
+    outcome = [] 
+
+    # Tant que1 E non vide faire
+    while (len(E) != 0) :
+
+        # marquer + et - un sommet x de E;
+        trouve = False
+        s = random.randint(0, n-1)
+        while ( not trouve ) :
+            if ( '+' not in flags[s] and '-' not in flags[s] ) :
+                flags[s].append('+')
+                flags[s].append('-')
+                trouve = True
+            elif ( '+' not in flags[s] and '-' in flags[s] ) :
+                flags[s].append('+')
+                trouve = True
+            elif ( '+'  in flags[s] and '-' not in flags[s] ) :
+                flags[s].append('-')
+                trouve = True
+            else :
+                s = random.randint(0, n-1) 
+
+        # tant que2 c'est possible faire :
+        possible = True
+        while ( possible ) :
+            # 1) marquer par + tout successeur (non encore marque par +) d'un sommet deja marque + ;
+            for succ in graphe[s] :
+                if '+' not in flags[succ] :
+                    flags[succ].append('+')
+
+            # 2) marquer par - tout predecesseur (non encore marque par -) d'un sommet deja marque - ;
+            for pred in predecesseurs(graphe, s) :
+                if '-' not in flags[pred] :
+                    flags[pred].append('-')
+
+            possible = False
+            
+
+        # Ecrire C l'ensemble des sommets marques + et -;
+        C = []
+        for i in range(n) :
+            check = False
+            for l in  outcome :
+                if i in l :
+                    check = True
+            if ( '+' in flags[i] and '-' in flags[i] and not check ) :
+                C.append(i)
+                
+
+        # Ajout des composantes fortement connexes
+        outcome.append(C)
+
+        
+        # E <- E-C; C <- [];
+        for i in C :
+            E.remove(i)
+        C = []
+
+
+    return outcome
+
+G = [[1, 2], [2], [3], [4], []]
+
+print(composantes_fconnexes(G))
