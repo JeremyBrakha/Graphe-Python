@@ -36,8 +36,8 @@ def Welsh_Powell(G):
         deg[i] += len(G[i])
 
     deg = list(deg.items())
-    deg.sort(key=lambda x: x[1])
-    deg.reverse()
+    # deg.sort(key=lambda x: x[1])
+    # deg.reverse()
 
     i = 0
     while ("None" in sommetsColories.values()):
@@ -75,9 +75,7 @@ def Welsh_Powell(G):
 
         # Création des arêtes
         for index, vertices in enumerate(G):
-            print(vertices)
             for element in vertices:
-                print("index", index, "element", element)
                 Graphe.add_edge(index, element)
 
         # Attribution des bonnes couleurs aux arêtes
@@ -94,6 +92,6 @@ F = [[3, 5, 7], [2, 4, 6], [5, 7], [4, 6],
      [7], [6], [], []]
 Z = [[2], [], [3], [1]]
 
-result = Welsh_Powell(F)
+result = Welsh_Powell(G)
 
 print(result)

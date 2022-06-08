@@ -1,4 +1,3 @@
-import random
 import numpy as np
 
 src = [[1, 2], [2], [3], [4], []]
@@ -43,23 +42,25 @@ def dictGraphe(matriceAdjc):
     return graphe
 
 # algo de parcours de graphe en profondeur pour un noeud donné
-def dfs(visited, graph, node):  # function for dfs
-    if node not in visited:
-        print(node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+def dfs(visite, graph, noeud):
+    if noeud not in visite:
+        print(noeud)
+        visite.add(noeud)
+        for voisin in graph[noeud]:
+            dfs(visite, graph, voisin)
 
 
-
-
+print("Matrice d'adjacence")
+print()
 new_src = adjacente(graph3)
 print(new_src)
 print()
-myDictGraphe = dictGraphe(new_src)
-print(myDictGraphe)
-# test = algo_roy(new_src)
-# print(test)
+print("Algorithme de Roy-Warshall applique") 
 print()
-visited = set()
-print(dfs(visited, myDictGraphe, 0))
+test = algo_roy(new_src)
+print(test)
+# myDictGraphe = dictGraphe(new_src)
+# print(myDictGraphe)
+# print()
+# visite = set()
+# print(dfs(visite, myDictGraphe, 0))
